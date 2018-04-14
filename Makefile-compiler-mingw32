@@ -10,13 +10,17 @@ BINNAME = inform6.exe
 
 SOURCES = $(wildcard *.c)
 OBJECTS = $(patsubst %.c,%.o,${SOURCES})
+PCH = header.h.gch
 
 .PHONY: all clean
 
 all:	$(BINNAME)
 
 # Rules
-%.o: %.c header.h
+$(PCH): header.h
+	$(CC) $(DEFINES) $(CCOPTS) -x c-header -o $(PCH) header.h
+
+%.o: %.c $(PCH)
 	$(CC) $(DEFINES) $(CCOPTS) -o $@ -c $<
 
 $(BINNAME): $(OBJECTS)
@@ -24,4 +28,5 @@ $(BINNAME): $(OBJECTS)
 
 clean:
 	del /Q $(BINNAME)
+	del /Q $(PCH)
 	del /Q *.o
