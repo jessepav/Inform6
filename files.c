@@ -12,11 +12,7 @@
 /*                                                                           */
 /* ------------------------------------------------------------------------- */
 
-#if defined(PC_WIN32)
-  #include "header-win32.h"
-#else
-  #include "header.h"
-#endif
+#include "header.h"
 
 int total_files;                        /* Number of files so far, including 
                                            #include and #origsource files    */
@@ -90,6 +86,7 @@ char Temp1_Name[PATHLEN], Temp2_Name[PATHLEN], Temp3_Name[PATHLEN];
 /* ------------------------------------------------------------------------- */
 
 #if defined(PC_WIN32) && defined(HAS_REALPATH)
+#include <windows.h>
 char *realpath(const char *path, char *resolved_path)
 {
   return GetFullPathNameA(path,PATHLEN,resolved_path,NULL) != 0 ? resolved_path : 0;

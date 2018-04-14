@@ -10,31 +10,13 @@ BINNAME = inform6.exe
 
 SOURCES = $(wildcard *.c)
 OBJECTS = $(patsubst %.c,%.o,${SOURCES})
-PCH = header.h.gch
-PCH_WIN32 = header-win32.h.gch
-PCH_MAIN = main-header.h.gch
 
 .PHONY: all clean
 
 all:	$(BINNAME)
 
 # Rules
-$(PCH): header.h
-	$(CC) $(DEFINES) $(CCOPTS) -x c-header -o $(PCH) header.h
-
-$(PCH_MAIN): header-win32.h
-	$(CC) $(DEFINES) $(CCOPTS) -x c-header -o $(PCH_MAIN) main-header.h
-
-$(PCH_WIN32): header-win32.h
-	$(CC) $(DEFINES) $(CCOPTS) -x c-header -o $(PCH_WIN32) header-win32.h
-
-inform.o: inform.c $(PCH_MAIN)
-	$(CC) $(DEFINES) $(CCOPTS) -o inform.o -c inform.c
-
-files.o: files.c $(PCH_WIN32)
-	$(CC) $(DEFINES) $(CCOPTS) -o files.o -c files.c
-
-%.o: %.c $(PCH)
+%.o: %.c header.h
 	$(CC) $(DEFINES) $(CCOPTS) -o $@ -c $<
 
 $(BINNAME): $(OBJECTS)
@@ -42,5 +24,4 @@ $(BINNAME): $(OBJECTS)
 
 clean:
 	del /Q $(BINNAME)
-	del /Q $(PCH) $(PCH_WIN32) $(PCH_MAIN)
 	del /Q *.o
