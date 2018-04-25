@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceInsightBookmarks
+	AppVer="4.00.0093"
+	AppVerMinReader="4.00.0009"
+	>
+	<Bookmarks>
+		<Mark
+			Name="1804254933124052408102"
+			Comment="Check for three-single-quotes special form"
+			File="lexer.c"
+			Line="1581"
+			Column="38"
+			Symbol="get_next_token"
+			SymbolInstance="0"
+			SymbolType="Function"
+			LineOffset="153"
+			/>
+		<Mark
+			Name="1835451275624052408102"
+			Comment="Convert one-character single-quoted string to a number"
+			File="expressp.c"
+			Line="91"
+			Column="23"
+			Symbol="get_next_etoken"
+			SymbolInstance="0"
+			SymbolType="Function"
+			LineOffset="33"
+			/>
+	</Bookmarks>
+</SourceInsightBookmarks>

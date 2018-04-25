@@ -1579,7 +1579,7 @@ extern void get_next_token(void)
                 if ((d == '\'') && (e != '@'))
                 {   if (quoted_size == 1)
                     {   d = (*get_next_char)(); *lex_p++ = d;
-                        if (d != '\'')
+                        if (d != '\'')  /* Check for the special form ''' (a quoted single-quote) '*/
                             error("No text between quotation marks ''");
                     }
                     break;

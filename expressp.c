@@ -89,7 +89,8 @@ static int get_next_etoken(void)
         case SQ_TT:
             {   int32 unicode = text_to_unicode(token_text);
                 if (token_text[textual_form_length] == 0)
-                {
+                {   /* The quoted text is one-character long, and
+                       thus will be converted to its numerical value */
                     if (!glulx_mode) {
                         current_token.value = unicode_to_zscii(unicode);
                         if (current_token.value == 5)
